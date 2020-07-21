@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: darkslategrey;
+  background-color: white;
 }
 
 .grid-container {
@@ -16,4 +16,13 @@ body {
 .grid-item {
   align-content: center;
   text-align: center;
+}
+
+select.form-control,
+textarea.form-control,
+input.form-control {
+  font-size: 16px;
+}
+input[type=file] {
+  width: 100%;
 }

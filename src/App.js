@@ -1,49 +1,76 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import {  Nav, Navbar, Container, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
-import Container from '@material-ui/core/Container'
+import './App.css'
 
-import AppHome from './AppHome'
-import Settings from './settings'
+import Routes from './Routes'
+import { AppContext } from './libs/contextLib'
 
-import {
-    BrowserRouter as Router,
-    Switch, Route, Link
-} from "react-router-dom"
+
 
 
 
 const App = () => {
-    const padding = {
-        padding: 5
-      }
+  const [isAuthenticated, userHasAuthenticated] = useState(false)
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('BudgetUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      userHasAuthenticated(true)
+  
+    }
+  }, [])
+  
+  const handleLogout = () => {
+    userHasAuthenticated(false);
+    window.localStorage.removeItem('BudgetUser')
+  }
+  
+
+
+  return (
+    <div>
+        <Navbar bg="light">
+          <Navbar.Brand>
+            <Link to="/">Home</Link>
+          </Navbar.Brand>
+
+
+            <Nav className="container-fluid" >
+              {isAuthenticated
+                ? <Button className="ml-auto" onClick={handleLogout}> Logout </Button>
+                : <>
+                  <LinkContainer to="/signup">
+                    <Nav.Item className="ml-auto">
+                      <Nav.Link href="/signup">Signup</Nav.Link>
+                    </Nav.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <Nav.Item>
+                      <Nav.Link href="/login">Login</Nav.Link>
+                    </Nav.Item>
+                  </LinkContainer>
+                  </>
+              }
+            </Nav>
+
+        </Navbar>
+     
+      
+
+      <Container>
+        <AppContext.Provider value={{isAuthenticated, userHasAuthenticated}}>
+        <Routes />
+        </AppContext.Provider>
+      </Container>
     
-      return (
-        <Container maxWidth="sm">
-            <Router>
-            <div>
-                <Link style={padding} to="/">home</Link>
-                <Link style={padding} to="/settings">settings</Link>
-            </div>
-        
-            <Switch>
-                <Route path="/settings">
-                <Settings />
-                </Route>
-                <Route path="/">
-                <AppHome />
-                </Route>
-            </Switch>
-        
-            <div style ={{bottom: "0", position:"fixed"}}>
-                <i>BudgetHelper, Mika Leppiaho 2020</i>
-            </div>
-            </Router>
-        </Container>
-        
-        
-        
-      )
+    </div>
+     
+     
+  )
 }
 
 export default App
