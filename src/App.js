@@ -20,7 +20,6 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       userHasAuthenticated(true)
-  
     }
   }, [])
   
@@ -41,7 +40,14 @@ const App = () => {
 
             <Nav className="container-fluid" >
               {isAuthenticated
-                ? <Button className="ml-auto" onClick={handleLogout}> Logout </Button>
+                ? <>
+                  <LinkContainer to="/settings">
+                    <Nav.Item>
+                      <Nav.Link href="/settings">Settings</Nav.Link>
+                    </Nav.Item>
+                  </LinkContainer>
+                  <Button className="ml-auto" onClick={handleLogout}> Logout </Button>
+                  </>
                 : <>
                   <LinkContainer to="/signup">
                     <Nav.Item className="ml-auto">
@@ -66,6 +72,7 @@ const App = () => {
         <Routes />
         </AppContext.Provider>
       </Container>
+      <footer>BudgetHelper, Mika Leppiaho 2020</footer>
     
     </div>
      

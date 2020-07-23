@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap'
 
 import loginService from  '../services/login'
@@ -10,6 +11,8 @@ const LoginForm = () => {
     const [password, setPassword] = useState('')
 
     const { userHasAuthenticated } = useAppContext();
+
+    const history = useHistory();
 
     const validateForm = () => {
         return username.length > 0 && password.length
@@ -26,9 +29,11 @@ const LoginForm = () => {
             window.localStorage.setItem(
                 'BudgetUser', JSON.stringify(user)
             )
+            
 
             setUsername('')
             setPassword('')
+            history.push('/')
             userHasAuthenticated(true);
         } catch {
             console.log("login failed")

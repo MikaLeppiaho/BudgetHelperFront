@@ -2,6 +2,13 @@
     margin-top: 15px;
   }
   
-  .App .navbar-brand {
-    font-weight: bold;
-  }
+.App .navbar-brand {
+  font-weight: bold;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  margin: 10px;
+  width: 100%;
+  color:grey;
+}
