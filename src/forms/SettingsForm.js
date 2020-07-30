@@ -2,18 +2,22 @@ import React, { useState } from 'react'
 
 import { Form, Button, Col } from 'react-bootstrap'
 
-const SettingsForm = ({ submitNewBudgetSetting }) => {
+const SettingsForm = ({ submitNewBudgetSetting, addNewExpense }) => {
   const [newIncome, setNewIncome] = useState('')
-  const [newExpense, setNewExpense] = useState('')
+  const [newExpenseAmount, setNewExpenseAmount] = useState(0)
+  const [newExpenseDescription, setNewExpenseDescription] = useState('')
   const [savings, setNewSavingsValue] = useState(0)
 
   const handleIncomeChange = (event) => {
     setNewIncome(event.target.value)
   }
-
-  const handleNewExpense = (event) => {
-    setNewExpense(event.target.value)
+  const handleNewExpenseDescription = (event) => {
+    setNewExpenseDescription(event.target.value)
   }
+  const handleNewExpenseAmount = (event) => {
+    setNewExpenseAmount(event.target.value)
+  }
+
   const handleRangeChange = (event) => {
     setNewSavingsValue(event.target.value)
   }
@@ -67,8 +71,8 @@ const SettingsForm = ({ submitNewBudgetSetting }) => {
             <Form.Label>description</Form.Label>
             <Form.Control
               type="text"
-              value={newExpense}
-              onChange={handleNewExpense}
+              value={newExpenseDescription}
+              onChange={handleNewExpenseDescription}
               placeholder="Enter expense description"
             />
             <Form.Text className="text-muted">
@@ -79,8 +83,8 @@ const SettingsForm = ({ submitNewBudgetSetting }) => {
             <Form.Label>amount</Form.Label>
             <Form.Control
               type="number"
-              value={newExpense}
-              onChange={handleNewExpense}
+              value={newExpenseAmount}
+              onChange={handleNewExpenseAmount}
               placeholder="Enter expense amount"
             />
             <Form.Text className="text-muted">
@@ -88,7 +92,14 @@ const SettingsForm = ({ submitNewBudgetSetting }) => {
             </Form.Text>
           </Form.Group>
           <Form.Group as={Col} controlId="formExpenseSubmit">
-            <Button variant="primary">Submit</Button>
+            <Button
+              variant="primary"
+              onClick={() =>
+                addNewExpense(newExpenseDescription, newExpenseAmount)
+              }
+            >
+              Submit
+            </Button>
           </Form.Group>
         </Form.Row>
       </Form>

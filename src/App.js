@@ -9,6 +9,8 @@ import Routes from './Routes'
 import { AppContext } from './libs/contextLib'
 
 import incomeService from './services/income'
+import expenseService from './services/expense'
+import dailyBudgetService from './services/dailybudget'
 
 const App = () => {
   console.log('This is the APP Rendering!')
@@ -20,6 +22,9 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       incomeService.setToken(user.token)
+      expenseService.setToken(user.token)
+      dailyBudgetService.setToken(user.token)
+
       userHasAuthenticated(true)
       console.log('User.Token: ', user.token)
     }
