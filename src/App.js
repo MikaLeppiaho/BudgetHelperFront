@@ -13,20 +13,17 @@ import expenseService from './services/expense'
 import dailyBudgetService from './services/dailybudget'
 
 const App = () => {
-  console.log('This is the APP Rendering!')
   const [isAuthenticated, userHasAuthenticated] = useState(false)
-  const [settings, setSettings] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('BudgetUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
+
+      userHasAuthenticated(true)
       incomeService.setToken(user.token)
       expenseService.setToken(user.token)
       dailyBudgetService.setToken(user.token)
-
-      userHasAuthenticated(true)
-      console.log('User.Token: ', user.token)
     }
   }, [])
 

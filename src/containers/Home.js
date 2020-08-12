@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Home.css'
 import { useAppContext } from '../libs/contextLib'
-import dailyBudgetService from '../services/dailybudget'
+import DailyBudget from '../forms/BudgetForm'
 
 const HomePage = () => (
   <div className="Home">
@@ -15,40 +15,19 @@ const HomePage = () => (
   </div>
 )
 
-const BudgetPage = ({ settings }) => (
+const BudgetPage = () => (
   <div className="Home">
     <div className="lander">
       <h1>Budget helper</h1>
-      {settings ? (
-        <div>
-          <p>This is your daily budget! </p>
-          <p>{settings.dailyBudget}</p>
-          <form>{/* Päivittäisen budgetin päivittymisformi*/}</form>
-        </div>
-      ) : (
-        <p>You haven't set your budgetsettings. Check the Settings tab!</p>
-      )}
+
+      <DailyBudget />
     </div>
   </div>
 )
 
 const Home = () => {
-  const [settings, setSettings] = useState('')
   const { isAuthenticated } = useAppContext()
-  useEffect(() => {
-    const fetchSettings = async () => {
-      const settings = await dailyBudgetService.getDailyBudget()
-      setSettings(settings)
-    }
-    if (isAuthenticated) {
-      fetchSettings()
-    }
-  }, [isAuthenticated])
 
-  return (
-    <div>
-      {isAuthenticated ? <BudgetPage settings={settings} /> : HomePage()}
-    </div>
-  )
+  return <div>{isAuthenticated ? <BudgetPage /> : HomePage()}</div>
 }
 export default Home

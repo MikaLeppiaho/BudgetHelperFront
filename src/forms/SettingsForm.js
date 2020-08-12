@@ -29,7 +29,7 @@ const SettingsForm = ({ submitNewBudgetSetting, addNewExpense }) => {
           <Form.Group as={Col} controlId="formGridIncome">
             <Form.Label>Monthly Income</Form.Label>
             <Form.Control
-              type="text"
+              type="Number"
               value={newIncome}
               onChange={handleIncomeChange}
               placeholder="Enter monthly income"

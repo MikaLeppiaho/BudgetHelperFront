@@ -1,7 +1,7 @@
 //Kuukausittaisen kulujen ylläpito
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3005/api/expenses'
+const baseUrl = '/api/expenses'
 
 let token = null
 
@@ -18,7 +18,13 @@ const addNewExpense = async (newExpense) => {
   return response.data
 }
 
+const removeExpense = async (id) => {
+  const response = await axios.delete(`${baseUrl}/${id}`)
+  return response.data
+}
+
 export default {
   setToken,
-  addNewExpense
+  addNewExpense,
+  removeExpense
 }

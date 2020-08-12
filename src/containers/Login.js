@@ -1,9 +1,10 @@
+//Endpoint kirjautumiselle
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap'
 
 import loginService from '../services/login'
-import expenseService from '../services/login'
+import expenseService from '../services/expense'
 import incomeService from '../services/income'
 
 import { useAppContext } from '../libs/contextLib'
@@ -22,20 +23,20 @@ const LoginForm = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    console.log(`Loggin with ${username} and ${password}`)
+    
 
     try {
+      
       const user = await loginService.login({ username, password })
-
       window.localStorage.setItem('BudgetUser', JSON.stringify(user))
       incomeService.setToken(user.token)
       expenseService.setToken(user.token)
       setUsername('')
       setPassword('')
       history.push('/')
-      userHasAuthenticated(true)
+      await userHasAuthenticated(true)
     } catch {
-      console.log('login failed')
+      
     }
   }
 

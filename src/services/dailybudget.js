@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3005/api/dailybudget'
+const baseUrl = '/api/dailybudget'
 
 let token = null
 
@@ -18,11 +18,11 @@ const getDailyBudget = async () => {
   return response.data
 }
 
-const updateDailyBudget = async () => {
+const updateDailyBudget = async (data, id) => {
   const config = {
     headers: { Authorization: token }
   }
-  const request = await axios.put(baseUrl, config)
+  const request = await axios.put(`${baseUrl}/${id}`, data, config)
   return request.data
 }
 
