@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = '/api/budgetsettings'
+
+let baseUrl = '/api/budgetsettings'
 
 let token = null
 

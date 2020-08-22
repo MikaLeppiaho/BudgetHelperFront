@@ -36,7 +36,7 @@ const App = () => {
     <div>
       <Navbar bg="light">
         <Navbar.Brand>
-          <Link to="/">Home</Link>
+          <Link to="/">Budget Helper</Link>
         </Navbar.Brand>
 
         <Nav className="container-fluid">
@@ -54,13 +54,8 @@ const App = () => {
             </>
           ) : (
             <>
-              <LinkContainer to="/signup">
-                <Nav.Item className="ml-auto">
-                  <Nav.Link href="/signup">Signup</Nav.Link>
-                </Nav.Item>
-              </LinkContainer>
               <LinkContainer to="/login">
-                <Nav.Item>
+                <Nav.Item className="ml-auto">
                   <Nav.Link href="/login">Login</Nav.Link>
                 </Nav.Item>
               </LinkContainer>
@@ -69,7 +64,7 @@ const App = () => {
         </Nav>
       </Navbar>
 
-      <Container>
+      <Container fluid>
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <Routes />
         </AppContext.Provider>

@@ -10,6 +10,7 @@ import serviceExpense from '../services/expense'
 
 const Settings = () => {
   const [settings, setBudgetSettings] = useState('')
+  const [expenses, setExpenses] = useState([])
   const [buttonState, setButtonState] = useState(false)
 
   useEffect(() => {
@@ -17,6 +18,8 @@ const Settings = () => {
     const fetchSettings = async () => {
       const settings = await serviceIncome.getBudgetSetting()
       setBudgetSettings(settings)
+      setExpenses(settings.expenses)
+      console.log('expenses with effect: ', expenses)
     }
     if (isSubscribed) {
       fetchSettings()
@@ -33,14 +36,11 @@ const Settings = () => {
   }
 
   const submitNewBudgetSetting = async (income, savings) => {
-    setButtonState(true)
     const budgetSetting = {
       income: income,
       savings: savings / 100 //muutetaan säästettävästä prosenttimäärästä palvelimelle ymmärrettäväksi desimaaliksi
     }
     await serviceIncome.postBudgetSetting(budgetSetting)
-
-    setButtonState(false)
   }
 
   //Funtio ottaa argumentiksi SettingsFormilta kuukausittaisen menon hinnan ja selityksen, ja lähettää ne post pyynnöllä tietokantaan
@@ -49,7 +49,9 @@ const Settings = () => {
       description: expenseDescription,
       amount: expenseAmount / 1
     }
-    await serviceExpense.addNewExpense(newExpense)
+    const result = await serviceExpense.addNewExpense(newExpense)
+    setExpenses(expenses.concat(result))
+    console.log('Updated', expenses)
   }
 
   return (
@@ -65,7 +67,7 @@ const Settings = () => {
       ) : (
         <div>
           <Income income={settings.income} savings={settings.savings} />
-          <Expenses settings={settings} removeExpense={removeExpense} />
+          <Expenses settings={expenses} removeExpense={removeExpense} />
         </div>
       )}
     </div>

@@ -1,7 +1,7 @@
 //Kuukausittaisen kulujen ylläpito
 import axios from 'axios'
 
-const baseUrl = '/api/expenses'
+let baseUrl = '/api/expenses'
 
 let token = null
 

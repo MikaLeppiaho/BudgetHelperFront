@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = '/api/users'
+
+let baseUrl = '/api/users'
 
 const newUser = async (newUserObject) => {
   const response = await axios.post(baseUrl, newUserObject)

@@ -1,8 +1,7 @@
 //Endpoint päivittäisen budgetin hakemiseen
-
 import axios from 'axios'
 
-const baseUrl = '/api/dailybudget'
+let baseUrl = '/api/dailybudget'
 
 let token = null
 

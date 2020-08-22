@@ -1,19 +1,35 @@
-.Home .lander h1 {
-    padding: 80px 0;
-    text-align: center;
+.Home .lander h2 {
+  margin-top: 2em;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+.Home .lander h2 img {
+  width: 3em;
 }
 
-.Home .lander h1 {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 600;
-}
-  
 .Home .lander p {
-    color: #999;
+  text-align: center;
 }
 
 .Home .lander i {
-    color: #999;
-    bottom: 0;
-    position: fixed;
+  color: #999;
+  bottom: 0;
+  position: fixed;
+}
+.Home .lander .backdrop {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../images/northfolk.jpg');
+}
+.Home .lander .backdrop h1 {
+  padding: 10em;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: large;
+  color: '#4A4A4B';
+  font-weight: 400;
+}
+.Home .lander h1 p {
+  margin-top: 2em;
 }

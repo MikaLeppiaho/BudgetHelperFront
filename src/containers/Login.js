@@ -6,6 +6,7 @@ import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap'
 import loginService from '../services/login'
 import expenseService from '../services/expense'
 import incomeService from '../services/income'
+import dailyBudgetService from '../services/dailybudget'
 
 import { useAppContext } from '../libs/contextLib'
 
@@ -23,21 +24,20 @@ const LoginForm = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    
 
     try {
-      
       const user = await loginService.login({ username, password })
+      console.log(user)
       window.localStorage.setItem('BudgetUser', JSON.stringify(user))
       incomeService.setToken(user.token)
       expenseService.setToken(user.token)
+      dailyBudgetService.setToken(user.token)
+
       setUsername('')
       setPassword('')
-      history.push('/')
       await userHasAuthenticated(true)
-    } catch {
-      
-    }
+      history.push('/')
+    } catch {}
   }
 
   return (

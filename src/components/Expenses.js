@@ -9,7 +9,7 @@ const Setting = ({ settings, removeExpense }) => {
     <div>
       <h3>Expenses</h3>
       <ListGroup>
-        {settings.expenses.map((s) => (
+        {settings.map((s) => (
           <ListGroup.Item key={s.id}>
             <Container>
               <Row>

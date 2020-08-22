@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useAppContext } from '../libs/contextLib'
 import { Form, Button } from 'react-bootstrap'
+import './BudgetForm.css'
 
 import dailyBudgetService from '../services/dailybudget'
 
@@ -12,9 +13,10 @@ const BudgetForm = () => {
 
   useEffect(() => {
     const fetchSettings = async () => {
-      const settings = await dailyBudgetService.getDailyBudget()
-      setSettings(settings)
-      setDailyBudget(settings.dailyBudget)
+      const resultSettings = await dailyBudgetService.getDailyBudget()
+      setSettings(resultSettings)
+      setDailyBudget(resultSettings.dailyBudget)
+      console.log('Daily bug', isAuthenticated)
     }
     if (isAuthenticated) {
       fetchSettings()
@@ -33,16 +35,17 @@ const BudgetForm = () => {
   }
 
   return (
-    <div>
+    <div className="messageStyle">
       {settings ? (
         <Form>
           <Form.Group controlId="formDailyBudgetAmount">
-            <Form.Label> Your budget for today: </Form.Label>
-            <Form.Control plaintext readOnly value={dailyBudget} />
+            <Form.Label>Your budget for today:</Form.Label>
+            <p>{dailyBudget}</p>
           </Form.Group>
           <Form.Group controlId="formDailyBudgetInput">
             <Form.Label>Add a new expense</Form.Label>
             <Form.Control
+              className="formControl"
               type="Number"
               value={expenseAmount}
               onChange={(event) => setExpenseAmount(event.target.value)}
