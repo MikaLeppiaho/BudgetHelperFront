@@ -1,12 +1,19 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 import homeIcon1 from '../images/homeIcon1.png'
 import homeIcon2 from '../images/homeIcon2.png'
 import homeIcon3 from '../images/homeIcon3.png'
 
 const HomePage = () => {
+  const history = useHistory()
+
+  const signUp = () => {
+    history.push('/signup')
+  }
+
   return (
     <div>
       <Row>
@@ -15,7 +22,7 @@ const HomePage = () => {
             <h1>
               A simple tool to help you manage your daily expenses{' '}
               <p>
-                <Button href="/signup">Sign up</Button>
+                <Button onClick={signUp}>Sign up</Button>
               </p>
             </h1>
           </div>

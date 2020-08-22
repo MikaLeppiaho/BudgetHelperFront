@@ -23,12 +23,12 @@
   background-image: url('../images/northfolk.jpg');
 }
 .Home .lander .backdrop h1 {
-  padding: 10em;
+  padding: 8em;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  font-size: large;
+  font-size: x-large;
   color: '#4A4A4B';
-  font-weight: 400;
+  font-weight: 500;
 }
 .Home .lander h1 p {
   margin-top: 2em;

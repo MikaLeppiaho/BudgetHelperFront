@@ -6,7 +6,6 @@ const Signup = () => {
   const createUser = async (userObject) => {
     console.log(userObject)
     await userService.newUser(userObject)
-    //TODO Kirjautuminen pitää saada toimimaan
   }
   return (
     <div>
