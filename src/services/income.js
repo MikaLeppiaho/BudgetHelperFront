@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let baseUrl = '/api/budgetsettings'
+let baseUrl = 'http://localhost:3005/api/budgetsettings'
 
 let token = null
 

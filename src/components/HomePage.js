@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { Row, Col } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 import homeIcon1 from '../images/homeIcon1.png'
@@ -30,19 +30,19 @@ const HomePage = () => {
       </Row>
 
       <Row>
-        <Col>
+        <Col sm>
           <h2>
             <img src={homeIcon1} />
           </h2>
           <p>Don't spend more than you make</p>
         </Col>
-        <Col>
+        <Col sm>
           <h2>
             <img src={homeIcon2} />
           </h2>
           <p>Always plan for the future</p>
         </Col>
-        <Col>
+        <Col sm>
           <h2>
             <img src={homeIcon3} />
           </h2>

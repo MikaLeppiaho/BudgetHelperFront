@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let baseUrl = '/api/login'
+let baseUrl = 'http://localhost:3005/api/login'
 
 const login = async (credentials) => {
   const response = await axios.post(baseUrl, credentials)

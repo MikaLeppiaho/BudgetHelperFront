@@ -3,10 +3,14 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap'
 
+import './Login.css'
+
 import loginService from '../services/login'
 import expenseService from '../services/expense'
 import incomeService from '../services/income'
 import dailyBudgetService from '../services/dailybudget'
+
+import Notification from '../components/Notification'
 
 import { useAppContext } from '../libs/contextLib'
 
@@ -42,6 +46,8 @@ const LoginForm = () => {
 
   return (
     <div className="Login">
+      <h2>Login</h2>
+      <Notification />
       <form onSubmit={handleLogin}>
         <FormGroup controlId="username">
           <FormLabel>username</FormLabel>

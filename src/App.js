@@ -11,6 +11,7 @@ import { AppContext } from './libs/contextLib'
 import incomeService from './services/income'
 import expenseService from './services/expense'
 import dailyBudgetService from './services/dailybudget'
+import Notification from './components/Notification'
 
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false)
@@ -63,7 +64,6 @@ const App = () => {
           )}
         </Nav>
       </Navbar>
-
       <Container fluid>
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <Routes />

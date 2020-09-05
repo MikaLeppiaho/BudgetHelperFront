@@ -1,35 +1,58 @@
-.Home .lander h2 {
-  margin-top: 2em;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-}
-.Home .lander h2 img {
-  width: 3em;
+@media all and (min-width: 600px) {
+  .Home .lander h2 {
+    margin-top: 2em;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .Home .lander h2 img {
+    width: 3em;
+  }
+
+  .Home .lander p {
+    text-align: center;
+  }
+
+  .Home .lander i {
+    color: #999;
+    bottom: 0;
+    position: fixed;
+  }
+  .Home .lander .backdrop {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../images/northfolk.jpg');
+  }
+  .Home .lander .backdrop h1 {
+    padding: 8em;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: x-large;
+    color: '#4A4A4B';
+    font-weight: 500;
+  }
+  .Home .lander h1 p {
+    margin-top: 2em;
+  }
 }
 
-.Home .lander p {
-  text-align: center;
-}
-
-.Home .lander i {
-  color: #999;
-  bottom: 0;
-  position: fixed;
-}
-.Home .lander .backdrop {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url('../images/northfolk.jpg');
-}
 .Home .lander .backdrop h1 {
-  padding: 8em;
   text-align: center;
+  margin: auto;
   font-family: 'Open Sans', sans-serif;
   font-size: x-large;
   color: '#4A4A4B';
   font-weight: 500;
 }
-.Home .lander h1 p {
+
+.Home .lander h2 {
   margin-top: 2em;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Home .lander p {
+  margin-top: 2em;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }

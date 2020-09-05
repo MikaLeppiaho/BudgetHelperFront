@@ -1,7 +1,7 @@
 //Kuukausittaisen kulujen ylläpito
 import axios from 'axios'
 
-let baseUrl = '/api/expenses'
+let baseUrl = 'http://localhost:3005/api/expenses'
 
 let token = null
 

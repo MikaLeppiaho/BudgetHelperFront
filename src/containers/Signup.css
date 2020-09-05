@@ -1,4 +1,16 @@
-.Signup {
-  padding: 80px 0;
-  text-align: center;
+@media all and (min-width: 600px) {
+  .Signup {
+    margin: 1em auto;
+    padding: 60px 30px;
+    width: 40%;
+    box-shadow: 1px 1px 5px;
+  }
+  .Signup h2 {
+    margin: auto auto 1em;
+    width: 40%;
+  }
+  .Signup p {
+    margin: 2em auto 1em;
+    color: lightslategray;
+  }
 }
