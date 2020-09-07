@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 let baseUrl = 'http://localhost:3005/api/budgetsettings'
+//let baseUrl = '/api/budgetsettings'
 
 let token = null
 
@@ -13,8 +14,10 @@ const getBudgetSetting = async () => {
     headers: { Authorization: token }
   }
 
-  const request = await axios.get(baseUrl, config)
+  console.log(`getBudgetSetting: ${baseUrl}, ${JSON.stringify(config)}`)
 
+  const request = await axios.get(baseUrl, config)
+  console.log('requ: ', request)
   return request.data
 }
 

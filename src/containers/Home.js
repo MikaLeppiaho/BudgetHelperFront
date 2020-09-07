@@ -1,13 +1,13 @@
 import React from 'react'
 import './Home.css'
-import { useAppContext } from '../libs/contextLib'
+
+import { useSelector } from 'react-redux'
 
 import HomePage from '../components/HomePage'
 import DailyBudget from '../forms/BudgetForm'
 
 const Home = () => {
-  const { isAuthenticated } = useAppContext()
-  console.log('isAuth', isAuthenticated)
+  const isAuthenticated = useSelector((state) => state.authentication.loggedIn)
 
   return (
     <div className="Home">

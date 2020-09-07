@@ -1,16 +1,30 @@
 .messageStyle {
+  color: #035a56;
+  font-size: 16px;
+  list-style-type: 'none';
+  margin: 1em auto;
+  padding: 10px;
+  box-shadow: 0 2px 6px;
+  width: 70%;
+}
+.messageStyle strong {
+  color: #05a59c;
+  font-size: 18px;
+  padding: 10px;
+  font-weight: 400;
+}
+.messageStyle h2 {
+  width: 100%;
+  font-size: 12px;
+  color: #05a59c;
+  text-align: left;
+}
+.expenseStyle {
   color: #8ccbc3;
   font-size: 16px;
   list-style-type: 'none';
-  margin: 10px;
+  margin: 1em auto;
   padding: 10px;
-  background-color: #f2ecd1;
-  box-shadow: 0 4px 4px;
-  text-align: center;
-}
-.messageStyle p {
-  font-size: 24px;
-  text-align: center;
-  color: #05a59c;
-  font-weight: bolder;
+
+  width: 70%;
 }

@@ -2,6 +2,7 @@
 import axios from 'axios'
 
 let baseUrl = 'http://localhost:3005/api/expenses'
+//let baseUrl = '/api/expenses'
 
 let token = null
 

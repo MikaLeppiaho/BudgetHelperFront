@@ -49,7 +49,7 @@ const SettingsForm = ({ submitNewBudgetSetting, addNewExpense }) => {
               onChange={handleRangeChange}
             />
             <Form.Text className="text-muted">
-              How much would you want to save from you income
+              How much would you want to save from your income
             </Form.Text>
           </Form.Group>
 

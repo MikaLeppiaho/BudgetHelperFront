@@ -1,44 +1,35 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './Home.css'
 import SettingsForm from '../forms/SettingsForm'
 
 import Expenses from '../components/Expenses'
 import Income from '../components/Income'
 
-import serviceIncome from '../services/income'
+import serviceIncome from '../services/setting'
 import serviceExpense from '../services/expense'
 
+import { initializeSettings, addExpenses } from '../reducers/settingsReducer'
+
 const Settings = () => {
-  const [settings, setBudgetSettings] = useState('')
-  const [expenses, setExpenses] = useState([])
-  const [buttonState, setButtonState] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    let isSubscribed = true
-    const fetchSettings = async () => {
-      const settings = await serviceIncome.getBudgetSetting()
-      setBudgetSettings(settings)
-      setExpenses(settings.expenses)
-      console.log('expenses with effect: ', expenses)
-    }
-    if (isSubscribed) {
-      fetchSettings()
-    }
-    return () => (isSubscribed = false)
-  }, [buttonState])
+    dispatch(initializeSettings())
+  }, [dispatch])
+
+  const settings = useSelector((state) => state.budgetSetting)
 
   const removeExpense = async (expenseId) => {
     try {
-      setButtonState(true)
       await serviceExpense.removeExpense(expenseId)
-      setButtonState(false)
     } catch (e) {}
   }
 
   const submitNewBudgetSetting = async (income, savings) => {
     const budgetSetting = {
       income: income,
-      savings: savings / 100 //muutetaan säästettävästä prosenttimäärästä palvelimelle ymmärrettäväksi desimaaliksi
+      savings: savings / 100 //muutetaan säästettävästä prosenttimäärästä desimaali
     }
     await serviceIncome.postBudgetSetting(budgetSetting)
   }
@@ -49,9 +40,9 @@ const Settings = () => {
       description: expenseDescription,
       amount: expenseAmount / 1
     }
-    const result = await serviceExpense.addNewExpense(newExpense)
-    setExpenses(expenses.concat(result))
-    console.log('Updated', expenses)
+    dispatch(addExpenses(newExpense))
+    //setExpenses(expenses.concat(result))
+    //console.log('Updated', expenses)
   }
 
   return (
@@ -62,14 +53,11 @@ const Settings = () => {
         submitNewBudgetSetting={submitNewBudgetSetting}
         addNewExpense={addNewExpense}
       />
-      {!settings ? (
-        <>loading...</>
-      ) : (
-        <div>
-          <Income income={settings.income} savings={settings.savings} />
-          <Expenses settings={expenses} removeExpense={removeExpense} />
-        </div>
-      )}
+      <div>
+        <Income income={settings.income} savings={settings.savings} />
+        <Expenses />
+      </div>
+      )
     </div>
   )
 }

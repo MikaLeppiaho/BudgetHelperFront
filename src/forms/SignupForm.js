@@ -18,7 +18,7 @@ const SignupForm = () => {
       password: values.password
     }
     dispatch(setNotification('User created succesfully', 10))
-    //await userService.newUser(userObject)
+    await userService.newUser(userObject)
     history.push('/login')
   }
   const { handleChange, handleSubmit, values, errors } = useFormSignup(

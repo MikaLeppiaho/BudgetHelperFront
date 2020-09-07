@@ -6,19 +6,18 @@ import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap'
 import './Login.css'
 
 import loginService from '../services/login'
-import expenseService from '../services/expense'
-import incomeService from '../services/income'
-import dailyBudgetService from '../services/dailybudget'
 
 import Notification from '../components/Notification'
 
-import { useAppContext } from '../libs/contextLib'
+import { login } from '../reducers/authenticationReducer'
+
+import { useDispatch } from 'react-redux'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const { userHasAuthenticated } = useAppContext()
+  const dispatch = useDispatch()
 
   const history = useHistory()
 
@@ -30,16 +29,12 @@ const LoginForm = () => {
     event.preventDefault()
 
     try {
-      const user = await loginService.login({ username, password })
-      console.log(user)
-      window.localStorage.setItem('BudgetUser', JSON.stringify(user))
-      incomeService.setToken(user.token)
-      expenseService.setToken(user.token)
-      dailyBudgetService.setToken(user.token)
-
+      //const user = await loginService.login({ username, password })
+      //console.log(user)
+      //window.localStorage.setItem('BudgetUser', JSON.stringify(user))
+      dispatch(login(username, password))
       setUsername('')
       setPassword('')
-      await userHasAuthenticated(true)
       history.push('/')
     } catch {}
   }

@@ -9,8 +9,6 @@ const notificationReducer = (state = '', action) => {
 //Action creator. Call function setNotification with the notification message and time. Action creator updates the notification state and after set seconds
 //the state is cleared
 export const setNotification = (content, time) => {
-  console.log('Content:', content)
-  console.log('Time:', time)
   return async (dispatch) => {
     dispatch({
       type: 'SET_NOTIFICATION',

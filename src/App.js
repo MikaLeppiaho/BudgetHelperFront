@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar, Container, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -6,31 +6,34 @@ import { LinkContainer } from 'react-router-bootstrap'
 import './App.css'
 
 import Routes from './Routes'
-import { AppContext } from './libs/contextLib'
 
-import incomeService from './services/income'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { initializeSettings } from './reducers/settingsReducer'
+
+import incomeService from './services/setting'
 import expenseService from './services/expense'
 import dailyBudgetService from './services/dailybudget'
-import Notification from './components/Notification'
+
+import { logout, setAuthenticated } from './reducers/authenticationReducer'
 
 const App = () => {
-  const [isAuthenticated, userHasAuthenticated] = useState(false)
-
+  const isAuthenticated = useSelector((state) => state.authentication.loggedIn)
+  const dispatch = useDispatch()
+  //check if userdata is stored in localstorage and update state with the information
   useEffect(() => {
+    console.log('LoginUseEffect')
     const loggedUserJSON = window.localStorage.getItem('BudgetUser')
+    console.log('LoginUseEffect2', loggedUserJSON)
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-
-      userHasAuthenticated(true)
-      incomeService.setToken(user.token)
-      expenseService.setToken(user.token)
-      dailyBudgetService.setToken(user.token)
+      dispatch(setAuthenticated(user))
+      dispatch(initializeSettings())
     }
-  }, [])
+  }, [dispatch])
 
   const handleLogout = () => {
-    userHasAuthenticated(false)
-    window.localStorage.removeItem('BudgetUser')
+    dispatch(logout())
   }
 
   return (
@@ -65,9 +68,7 @@ const App = () => {
         </Nav>
       </Navbar>
       <Container fluid>
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-          <Routes />
-        </AppContext.Provider>
+        <Routes />
       </Container>
       <footer>BudgetHelper, Mika Leppiaho 2020 </footer>
     </div>
